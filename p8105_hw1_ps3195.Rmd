@@ -12,7 +12,7 @@ output:
 
 >
 
-**Solution to Homework 1:**
+#### **Solution to Homework 1:**
 
 
 
@@ -24,7 +24,7 @@ library(tidyverse)
 
 
 
->### Problem 1
+>### *Problem 1*
 
 
 Create a data frame comprised of required elements:
@@ -40,7 +40,6 @@ prob1_df = tibble(
 
 ```
 
->
 
 
 Take the **mean** of each variable in the data frame:
@@ -58,7 +57,6 @@ mean(pull(prob1_df, factor_vec))
 
 The mean of **numbers and logical vector** works while the mean of **character and factor** does not make it.
 
->
 
 Convert variables from one type to another:
 
@@ -74,7 +72,7 @@ The **logical vector and the factor vector** have been converted to numerical wh
 
 (However, during the converting process of factor, "hard" has been converted to level 1 and "normal" to be level 3 and "easy" to be level 2 )
 
->
+
 
 
 ```{r second_chunk}

@@ -372,7 +372,8 @@ summary {
 <blockquote>
 
 </blockquote>
-<p><strong>Solution to Homework 1:</strong></p>
+<div id="solution-to-homework-1" class="section level4">
+<h4><strong>Solution to Homework 1:</strong></h4>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## -- Attaching packages --------------- tidyverse 1.3.0 --</code></pre>
 <pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
@@ -383,7 +384,7 @@ summary {
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <blockquote>
-<h3 id="problem-1">Problem 1</h3>
+<h3 id="problem-1"><em>Problem 1</em></h3>
 </blockquote>
 <p>Create a data frame comprised of required elements:</p>
 <pre class="r"><code>prob1_df = tibble(
@@ -392,14 +393,11 @@ summary {
   char_vec = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;),
   factor_vec = factor(c(&quot;hard&quot;, &quot;hard&quot;, &quot;hard&quot;, &quot;normal&quot;, &quot;normal&quot;, &quot;normal&quot;, &quot;normal&quot;, &quot;easy&quot;, &quot;easy&quot;, &quot;easy&quot;))
 )</code></pre>
-<blockquote>
-
-</blockquote>
 <p>Take the <strong>mean</strong> of each variable in the data frame:</p>
 <pre class="r"><code>mean(pull(prob1_df, samp))</code></pre>
-<pre><code>## [1] 0.2223623</code></pre>
+<pre><code>## [1] 0.2168138</code></pre>
 <pre class="r"><code>mean(pull(prob1_df, samp_gt_0))</code></pre>
-<pre><code>## [1] 0.5</code></pre>
+<pre><code>## [1] 0.4</code></pre>
 <pre class="r"><code>mean(pull(prob1_df, char_vec))</code></pre>
 <pre><code>## Warning in mean.default(pull(prob1_df, char_vec)): argument is not numeric or
 ## logical: returning NA</code></pre>
@@ -409,12 +407,9 @@ summary {
 ## logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>The mean of <strong>numbers and logical vector</strong> works while the mean of <strong>character and factor</strong> does not make it.</p>
-<blockquote>
-
-</blockquote>
 <p>Convert variables from one type to another:</p>
 <pre class="r"><code>as.numeric(pull(prob1_df, samp_gt_0))</code></pre>
-<pre><code>##  [1] 0 1 0 0 1 1 1 0 0 1</code></pre>
+<pre><code>##  [1] 0 1 1 0 1 0 0 1 0 0</code></pre>
 <pre class="r"><code>as.numeric(pull(prob1_df, char_vec))</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
@@ -422,18 +417,16 @@ summary {
 <pre><code>##  [1] 2 2 2 3 3 3 3 1 1 1</code></pre>
 <p>The <strong>logical vector and the factor vector</strong> have been converted to numerical while the <strong>character</strong> failed since they are shown “NA”.</p>
 <p>(However, during the converting process of factor, “hard” has been converted to level 1 and “normal” to be level 3 and “easy” to be level 2 )</p>
-<blockquote>
-
-</blockquote>
 <pre class="r"><code>as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)</code></pre>
-<pre><code>##  [1] 0.0000000 1.6186050 0.0000000 0.0000000 1.6732319 1.1310292 1.5084318
-##  [8] 0.0000000 0.0000000 0.2402751</code></pre>
+<pre><code>##  [1] 0.0000000 0.8553977 0.8231951 0.0000000 2.0223454 0.0000000 0.0000000
+##  [8] 0.1262743 0.0000000 0.0000000</code></pre>
 <pre class="r"><code>as.numeric(pull(prob1_df, factor_vec)) * pull(prob1_df, samp)</code></pre>
-<pre><code>##  [1] -3.1694739  3.2372101 -1.8197215 -1.3465676  5.0196956  3.3930875
-##  [7]  4.5252953 -0.2135966 -0.7908999  0.2402751</code></pre>
+<pre><code>##  [1] -0.2567300  1.7107954  1.6463903 -0.6220822  6.0670363 -1.2490449
+##  [7] -1.4765802  0.1262743 -0.3118928 -0.1029148</code></pre>
 <pre class="r"><code>as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * pull(prob1_df, samp)</code></pre>
-<pre><code>##  [1] -1.5847369  3.2372101 -0.9098608 -0.4488559  3.3464637  2.2620583
-##  [7]  3.0168636 -0.2135966 -0.7908999  0.4805502</code></pre>
+<pre><code>##  [1] -0.1283650  1.7107954  1.6463903 -0.2073607  4.0446909 -0.4163483
+##  [7] -0.4921934  0.2525486 -0.3118928 -0.1029148</code></pre>
+</div>
 
 
 

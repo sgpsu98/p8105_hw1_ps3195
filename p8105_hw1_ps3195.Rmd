@@ -2,29 +2,84 @@
 title: "p8105_hw1_ps3195"
 author: "Pengyuan Su"
 date: "9/15/2020"
-output: html_document
+output:
+    html_document:
+    toc: true
+    toc_float: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+
+>
+
+**Solution to Homework 1:**
+
+
+
+```{r}
+library(tidyverse)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+
+>### Problem 1
+
+
+Create a data frame comprised of required elements:
+
+
+```{r dataframe}
+prob1_df = tibble(
+  samp = rnorm(10),
+  samp_gt_0 = samp > 0,
+  char_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  factor_vec = factor(c("hard", "hard", "hard", "normal", "normal", "normal", "normal", "easy", "easy", "easy"))
+)
+
 ```
 
-## Including Plots
+>
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+Take the **mean** of each variable in the data frame:
+
+
+```{r mean_pull_var}
+mean(pull(prob1_df, samp))
+mean(pull(prob1_df, samp_gt_0))
+mean(pull(prob1_df, char_vec))
+mean(pull(prob1_df, factor_vec))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+The mean of **numbers and logical vector** works while the mean of **character and factor** does not make it.
+
+>
+
+Convert variables from one type to another:
+
+
+```{r convert_numeric}
+as.numeric(pull(prob1_df, samp_gt_0))
+as.numeric(pull(prob1_df, char_vec))
+as.numeric(pull(prob1_df, factor_vec))
+```
+
+
+The **logical vector and the factor vector** have been converted to numerical while the **character** failed since they are shown "NA". 
+
+(However, during the converting process of factor, "hard" has been converted to level 1 and "normal" to be level 3 and "easy" to be level 2 )
+
+>
+
+
+```{r second_chunk}
+as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
+as.numeric(pull(prob1_df, factor_vec)) * pull(prob1_df, samp)
+as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * pull(prob1_df, samp)
+```
+

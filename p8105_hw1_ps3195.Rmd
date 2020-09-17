@@ -94,13 +94,22 @@ ds = data("penguins", package = "palmerpenguins")
 The short description of the `penguins` dataset:
 
 
-The name of this dataset is `r ds`. And there are three factors which are `species`, `island` and `sex`,five numeric vectors are `bill_length_mm`, `bill_depth_mm`,`flipper_length_mm`, `body_mass_g` and `year`.
+The name of this dataset is `r ds`. And variables in it are `r ls(penguins)`. There are three factors which are `species`, `island` and `sex`,five numeric vectors are `bill_length_mm`, `bill_depth_mm`,`flipper_length_mm`, `body_mass_g` and `year`.
 
 
 The data of `year` is from `r min(pull(penguins, year))` to `r max(pull(penguins, year))`
 
 
 `r levels(pull(penguins, species))` are the three levels of `species`, while `r levels(pull(penguins, island))` are the three levels of `island`. `sex` is divided into `r levels(pull(penguins, sex))`. 
+
+
+The summary of these variables is: 
+
+
+```{r}
+summary(penguins)
+```
+
 
 
 The size of data is: `r nrow(penguins)` rows * `r ncol(penguins)` columns

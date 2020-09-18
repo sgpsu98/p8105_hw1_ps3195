@@ -1,6 +1,6 @@
 ---
 title: "p8105_hw1_ps3195"
-author: "Pengyuan Su"
+author: "Pengyuan Su,  UNI:ps3195"
 date: "9/15/2020"
 output:
     html_document:
@@ -18,6 +18,8 @@ output:
 
 ```{r library}
 library(tidyverse)
+library(ggplot2)
+set.seed(1)
 ```
 
 
@@ -88,52 +90,42 @@ Load the `penguins` dataset:
 
 
 ```{r}
-ds = data("penguins", package = "palmerpenguins")
+ data("penguins", package = "palmerpenguins")
 ```
 
 The short description of the `penguins` dataset:
 
 
-The name of this dataset is `r ds`. And variables in it are `r ls(penguins)`. There are three factors which are `species`, `island` and `sex`,five numeric vectors are `bill_length_mm`, `bill_depth_mm`,`flipper_length_mm`, `body_mass_g` and `year`.
+The name of this dataset is `penguins`. And variables in it are `r ls(penguins)`. There are three factors which are `species`, `island` and `sex`,five numeric vectors are `bill_length_mm`, `bill_depth_mm`,`flipper_length_mm`, `body_mass_g` and `year`.
 
 
-The data of `year` is from `r min(pull(penguins, year))` to `r max(pull(penguins, year))`
+`r levels(pull(penguins, species))` are the three levels of `species`, while `r levels(pull(penguins, island))` are the three levels of `island`. `sex` is divided into `r levels(pull(penguins, sex))`.
 
 
-`r levels(pull(penguins, species))` are the three levels of `species`, while `r levels(pull(penguins, island))` are the three levels of `island`. `sex` is divided into `r levels(pull(penguins, sex))`. 
+The *range* of bill length is (`r range(pull(penguins, bill_length_mm), na.rm = TRUE)`) and the *mean* of it is `r mean(pull(penguins, bill_length_mm), na.rm = TRUE)`.
 
 
-The summary of these variables is: 
+The *range* of bill depth is (`r range(pull(penguins, bill_depth_mm), na.rm = TRUE)`) and the *mean* of it is `r mean(pull(penguins, bill_depth_mm), na.rm = TRUE)`.
 
 
-```{r}
-summary(penguins)
-```
+The *range* of flipper length is (`r range(pull(penguins, flipper_length_mm), na.rm = TRUE)`). The *mean* of flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`.
+
+
+The *year* is from `r min(pull(penguins, year))` to `r max(pull(penguins, year))`.
+
+
+The *size* of data is: `r nrow(penguins)` rows * `r ncol(penguins)` columns
 
 
 
-The size of data is: `r nrow(penguins)` rows * `r ncol(penguins)` columns
-
-
-To calculas the mean of flipper length, we need to delete the 'NA' rows:
-
-
-```{r delete_NA_rows}
-data = na.omit(penguins)
-```
-
-
-Then, the mean of flipper length is `r mean(pull(data, flipper_length_mm))`
-
-
-The scatterplot is:
+> scatterplot 
 
 
 ```{r scatterplot}
 plot_df = tibble(
-  x = pull(data, bill_length_mm),
-  y = pull(data, flipper_length_mm),
-  species = pull(data, species)
+  x = pull(penguins, bill_length_mm),
+  y = pull(penguins, flipper_length_mm),
+  species = pull(penguins, species)
 )
 
 ggplot(plot_df, aes(x = x, y = y, color = species)) + geom_point()
